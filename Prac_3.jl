@@ -1,9 +1,6 @@
-#Practic3 
 #1 Is simple? 
 #2 Решето эратосфена? Все простые, не привосходящие n (1-n)
 #3 n = p1^k1.... factor(n) = [p1...pm][k1...km]
-#4 a1..an  Mn = 1/n Dn = SUM(i=1 to n)(ai-Mn)^2 
-# Дерево
 
 function isSimple(x::Int)
     a = x
