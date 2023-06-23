@@ -130,90 +130,7 @@ function fast_power(a::T,n::Integer)where T
 end
 
 
-function eyler(n)#тейлор
-    s,f = 1,1
-    for k in 1:n
-        f /=k
-        s += f
-    end
-    return s
-end
 
-function sin_(x)#тейлор рекурсивно
-    s,a,k= 0,x,2
-    while s + a != s
-        s+= a
-        a*= -x^2/(k*(k+1))
-        k += 2
-    end
-    return s
-end
-
-function eyler2(n)#возводим рекурсивно экспоненту
-    s,a,k = 1,1,1
-    while s + a != s
-        s += a
-        k += 1
-        a *= n/k
-    end
-    return s
-end
-
-function bisection(f::Function, left, right, epsilon)
-    @assert f(left)*f(right) < 0 
-    @assert left < right
-    f_left = f(left)
-    while right-left > epsilon
-        middle = left + (right-left)/2
-        f_middle = f(middle)
-        if f_middle == 0
-            return middle
-        elseif f_left*f_middle < 0
-            right=middle
-        else
-            left, f_left = middle, f_middle
-        end
-    end
-    return left + (right - left)/2
-end
-
-struct Polynomials{k}
-    coeffs::Vector{k}
-    Polynomials{k}(coeffs::Vector{k})  where k = new(coeffs)
-end
-
-r = x->-cot(x)
-function newton(r::Function, x, epsilon; num_max = 10)
-    dx = r(x)
-    k=0
-    while abs(dx) > epsilon && k <= num_max
-        x += dx
-        k += 1
-    end
-    k > num_max && @warn("Требуемая точность не достигнута")
-    return x
-end
-
-function Gorner(n::Int, a::AbstractVector{T}, t::T) where T
-    p=zero(T)
-    dp=zero(T)
-    i = 1
-    while (i < n)
-        dp = dp * x + p
-        p = p * t + a[i]
-    end
-    return dp, p
-end
-
-function Gorner2(n::Int, a::T, t) where T
-    i = 2
-    while (i <= n)
-        a[i] = a[i] + a[i-1]*t 
-        i = i + 1;
-    end
-    pop!(a)
-    return a
-end
 
 function TestPr2()
     println(fast_power(2,20))
@@ -227,8 +144,6 @@ function TestPr2()
     println("tut4 ",fast_power(exp(1),2))
     println(1 + 0.00000000000000001 == 1)
     println(logariphm(0.1,2,00000000000.1))
-    println(newton(x->x+0,1,1))
-    println(Gorner2(3, [1,2,1], -1))
 
     return round((fast_power((1+sqrt(5))/2,n) - fast_power((1-sqrt(5))/2,n))/sqrt(5))
 end
