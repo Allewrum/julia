@@ -1,39 +1,39 @@
 #=
 1. Написать функцию, вычисляющую n-ю частичную сумму ряда Телора
 (Маклорена) функции для произвольно заданного значения аргумента x.
-Сложность алгоритма должна иметь оценку .
+Сложность алгоритма должна иметь оценку.
 =#
 
-function exp_partial_sum(x::Real, n::Int)
-    sum = 0.0
-    term = 1.0
+function partial_sum(x::Real, n::Int)
+    summ = 0.0
+    termm = 1.0
     for i in 0:n
-        sum += term
-        term *= x / (i + 1)
+        summ += termm
+        termm *= x / (i + 1)
     end
-    return sum
+    return summ
 end
 
-println(exp_partial_sum(5.0, 6))
+println(partial_sum(5.0, 6))
 
 #=
 2. Написать функцию, вычиляющую значение с машинной точностью (с
 максимально возможной в арифметике с плавающей точкой).
 =#
 
-function exp_with_max_precision(x) ####
+function max_precision(x) 
     y = 1.0
-    term = 1.0
+    termm = 1.0
     k = 1
-    while y + term != y ######
-        term *= x / k
-        y += term
+    while y + termm != y 
+        termm *= x / k
+        y += termm
         k += 1
     end
     return y
 end
 
-println(exp_with_max_precision(5.0))
+println(max_precision(5.0))
 
 #=
 3. Написать функцию, вычисляющую функцию Бесселя (обобщение функции синуса, колебание струны 
@@ -70,11 +70,10 @@ for m in 0:5
 end
 display(myPlot)
 
-
-
 #=
-4. Реализовать алгорим, реализующий обратный ход алгоритма Жордана-Гаусса
+4. Реализовать алгорим, реализующий обратный ход алгоритма Жордана-Гаусса.
 =#
+
 using LinearAlgebra
 function shordan_gauss(A::AbstractMatrix{T}, b::AbstractVector{T})::AbstractVector{T} where T
     @assert size(A, 1) == size(A, 2)
@@ -92,8 +91,9 @@ function shordan_gauss(A::AbstractMatrix{T}, b::AbstractVector{T})::AbstractVect
 end
 
 #=
-5. Реализовать алгоритм, осуществляющий приведение матрицы матрицы к ступенчатому виду
+5. Реализовать алгоритм, осуществляющий приведение матрицы матрицы к ступенчатому виду.
 =#
+
 function TransformToSteps!(matrix::AbstractMatrix, epsilon::Real = 1e-7)::AbstractMatrix
 	@inbounds for k ∈ 1:size(matrix, 1)
 		absval, Δk = findmax(abs, @view(matrix[k:end,k]))
@@ -112,12 +112,11 @@ function TransformToSteps!(matrix::AbstractMatrix, epsilon::Real = 1e-7)::Abstra
 end
 
 
-#Проверка:
-#matrix = [1.0 2.0 3.0;1.0 6.0 9.0;-1.0 2.0 4.0]
-#values = [-1.0, 2.0, 2.0]
-#=println("--Матрица--")
+
+matrix = [1.0 2.0 3.0;1.0 6.0 9.0;-1.0 2.0 4.0]
+values = [-1.0, 2.0, 2.0]
+=println("--Матрица--")
 display(matrix)
 println("--Свободные члены--")
 display(values)
 println("--Обратный ход Гаусса--")
-display(ReverseGauss!(matrix,values))=#
