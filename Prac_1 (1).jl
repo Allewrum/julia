@@ -31,7 +31,7 @@ function inverse(a::Z{T,N}) where {T<:Integer, N}
     end 
 end
 
-function diaphant_solve(a::T,b::T,c::T) where T<:Integer
+function diaphant(a::T,b::T,c::T) where T<:Integer
     if mod(c,gcd(a,b))!=0
         return nothing
     end
@@ -46,10 +46,9 @@ Base. -(a::Z{T,N}) where {T<:Integer, N} = Z{T,N}(-a.a)
 Base. display(a::Z{T,N}) where {T<:Integer, N} = println(string(a.a))
 
 
-#-------------------------------------
 F = Z{Int, 8}(7)
 Q = Z{Int, 5}(9)
 
 print(inverse(Q),"\n")
-print(diaphant_solve(3,7,1))
+print(diaphant(3,7,1))
 print(F>>T)
