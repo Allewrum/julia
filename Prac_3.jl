@@ -1,4 +1,4 @@
-function isSimple(x::Int)
+function Simple(x::Int)
     a = x
     while(a >= sqrt(x))
         a = a - 1
@@ -9,11 +9,11 @@ function isSimple(x::Int)
     return true
 end
 
-function findall!(x::SharedArray{Bool})
+function Findall!(x::SharedArray{Bool})
     a = Vector
 end
 
-function resheto(x::Int)
+function resheto_erat(x::Int)
     a = SharedArray{Bool}(x)
     i = 2
     while (i < length(a))
@@ -54,10 +54,10 @@ function resheto_spec(x::Int)
         end
         b = b + 1
     end
-    return findall(a)
+    return Findall(a)
 end
 
-function crat(x::Int, y::Int)
+function cratno(x::Int, y::Int)
     i = 0
     while (x > 1 && mod(x,y) == 0)
         x = x/y
@@ -80,7 +80,7 @@ function factor(x::Int)
     return (a,b)
 end
 
-function factorization(n)
+function factor(n)
     factors = []
     d = 2
     while n > 1
@@ -99,7 +99,7 @@ function factorization(n)
     return factors
 end
 
-function standard_deviation(data)
+function deviation(data)
     n = length(data)
     mean_val = sum(data) / n
     deviations = [x - mean_val for x in data]
@@ -107,7 +107,7 @@ function standard_deviation(data)
     return mean_val, std_dev
 end
 
-function meanstd(aaa)
+function mean(aaa)
     T = eltype(aaa)
     n = 0; s¹ = zero(T); s² = zero(T)
     for a ∈ aaa
