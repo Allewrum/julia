@@ -1,4 +1,4 @@
-function pow(a, n :: Int)   # t*a^n = const
+function pow(a, n :: Int) 
     t = one(a)
     while n>0
         if mod(n, 2) == 0
@@ -67,7 +67,6 @@ end
 function bisection(f::Function, a, b, epsilon)
     if f(a)*f(b) < 0 && a < b
         f_a = f(a)
-        #ИНВАРИАНТ: f_a*f(b) < 0
         while b-a > epsilon
             t = (a+b)/2
             f_t = f(t)
@@ -85,12 +84,7 @@ function bisection(f::Function, a, b, epsilon)
     end
 end
 
-
-
-
-
 bisection(x->cos(x)-x, 0, 1, 1e-8)
-
 
 function newton(r::Function, x, epsilon, num_max = 10)
     dx = -r(x)
@@ -113,8 +107,6 @@ p(x) = 6*x^5 - 23*x^4 + 12*x^2 + 86
 
 rp(x) = p(x) / (30*x^4 - 92*x^3 + 24*x)
 
-
-
 function fast_power(a::T,n::Integer)where T
     p,k,t = a,n,one(T)
     while k > 0
@@ -128,8 +120,6 @@ function fast_power(a::T,n::Integer)where T
     end
     return t
 end
-
-
 
 
 function TestPr2()
