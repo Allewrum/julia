@@ -1,7 +1,3 @@
-#1 Is simple? 
-#2 Решето эратосфена? Все простые, не привосходящие n (1-n)
-#3 n = p1^k1.... factor(n) = [p1...pm][k1...km]
-
 function isSimple(x::Int)
     a = x
     while(a >= sqrt(x))
@@ -120,13 +116,4 @@ function meanstd(aaa)
     mean = s¹ ./ n
     return mean, sqrt(s²/n - mean*mean)
 end
-
-
-#1) проверка простоты числа, 
-#2) решето Эратосфена, 
-#) факторизация, 
-#4) среднее квадратическое отклонение за один проход, 
-
-
-
 end
